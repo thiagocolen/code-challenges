@@ -12,30 +12,62 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-var addTwoNumbers = function (l1, l2) {
 
-    const transformList = (list) => {
-        return list
-            .reverse()
-            .reduce((previousValue, currentValue) => {
-                return Number(`${previousValue}${currentValue}`);
-            })
-    }
-
-    const result = transformList(l1) + transformList(l2);
-
-    return result
-        .toString()
-        .split('')
-        .map((item) => {
-            return Number(item);
-        })
-        .reverse();
+const listNode1 = {
+  val: 2,
+  next: {
+    val: 4,
+    next: {
+      val: 3,
+      next: null,
+    },
+  },
 };
 
-console.log(
-    addTwoNumbers(
-        [2, 4, 3],
-        [5, 6, 4]
-    )
-)
+const listNode2 = {
+  val: 5,
+  next: {
+    val: 6,
+    next: {
+      val: 4,
+      next: null,
+    },
+  },
+};
+
+var addTwoNumbers = function (l1, l2) {
+
+
+    
+
+
+  for (const [key, value] of Object.entries(l1)) {
+    console.log(`${key}: ${value}`);
+    if (key === "next") {
+      debugger
+    }
+  }
+
+  debugger
+
+};
+
+console.log(addTwoNumbers(listNode1, listNode2));
+
+// var addTwoNumbers = function (l1, l2) {
+//   const transformList = (list) => {
+//     return list.reverse().reduce((previousValue, currentValue) => {
+//       return Number(`${previousValue}${currentValue}`);
+//     });
+//   };
+
+//   const result = transformList(l1) + transformList(l2);
+
+//   return result
+//     .toString()
+//     .split("")
+//     .map((item) => {
+//       return Number(item);
+//     })
+//     .reverse();
+// };
