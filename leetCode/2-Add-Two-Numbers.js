@@ -36,20 +36,49 @@ const listNode2 = {
 };
 
 var addTwoNumbers = function (l1, l2) {
+  const extractFromListNode = (obj, arr) => {
+    for (const [key, value] of Object.entries(obj)) {
+      console.log(`${key}: ${value}`);
+      if (key === "val") {
+        arr.push(value);
+      }
+      if (key === "next" && value !== null) {
+        extractFromListNode(value, arr);
+      }
+    }
+    return arr;
+  };
 
+  const l1Arr = extractFromListNode(l1, []);
+  const l2Arr = extractFromListNode(l2, []);
 
-    
+  const transformList = (list) => {
+    return list.reverse().reduce((previousValue, currentValue) => {
+      return Number(`${previousValue}${currentValue}`);
+    });
+  };
 
+  const result = transformList(l1Arr) + transformList(l2Arr);
 
-  for (const [key, value] of Object.entries(l1)) {
-    console.log(`${key}: ${value}`);
-    if (key === "next") {
+  const resultArr = result
+    .toString()
+    .split("")
+    .map((item) => {
+      return Number(item);
+    })
+    .reverse();
+
+  const makeLinkedList = (arr, obj) => {
+    if (arr.length > 0) {
+      obj.value = arr.shift();
+      obj.next = makeLinkedList(arr, obj);
       debugger
     }
-  }
 
+  };
+
+  const linkedList = makeLinkedList(resultArr, {});
   debugger
-
 };
 
 console.log(addTwoNumbers(listNode1, listNode2));
